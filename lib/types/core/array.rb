@@ -1,6 +1,6 @@
 RDL.nowrap :Array
 
-RDL.type_params :Array, [:t], :all?
+RDL.type_params :Array, [:t], :all?, variance: [:+]
 
 RDL.type :Array, :<<, '(t) -> Array<t>'
 RDL.type :Array, :[], '(Range<Integer>) -> Array<t>'

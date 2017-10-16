@@ -1,6 +1,6 @@
 RDL.nowrap :Set
 
-RDL.type_params :Set, [:t], :all?
+RDL.type_params :Set, [:t], :all?, variance: [:+]
 
 RDL.type :Set, 'self.[]', '(*u) -> Set<u>'
 RDL.type :Set, :initialize, '(?Enumerable<u> enum) -> self<u>'

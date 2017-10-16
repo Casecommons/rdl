@@ -1,6 +1,6 @@
 RDL.nowrap :Hash
 
-RDL.type_params :Hash, [:k, :v], :all?
+RDL.type_params :Hash, [:k, :v], :all?, variance: [:+, :+]
 
 RDL.type :Hash, 'self.[]', '(*u) -> Hash<u, u>'  # example: Hash[1,2,3,4]
 RDL.type :Hash, 'self.[]', '(Array<[a,b]>) -> Hash<a, b>'

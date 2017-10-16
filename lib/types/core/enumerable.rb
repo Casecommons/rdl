@@ -1,6 +1,6 @@
 RDL.nowrap :Enumerable
 
-RDL.type_params :Enumerable, [:t], :all?
+RDL.type_params :Enumerable, [:t], :all?, variance: [:+]
 
 RDL.type :Enumerable, :all?, '() -> %bool'
 RDL.type :Enumerable, :all?, '() { (t) -> %bool } -> %bool'
