@@ -1180,6 +1180,8 @@ RUBY
   def self.tc_send_one_recv(scope, env, trecv, meth, tactuals, block, e)
     return tc_send_class(trecv, e) if (meth == :class) && (tactuals.empty?)
     tmeth_inter = [] # Array<MethodType>, i.e., an intersection types
+    is_top = false
+
     case trecv
     when RDL::Type::SingletonType
       if trecv.val.is_a? Class or trecv.val.is_a? Module
@@ -1238,6 +1240,9 @@ RUBY
         # treat as Proc
         tc_send_one_recv(scope, env, RDL::Globals.types[:proc], meth, tactuals, block, e)
       end
+    when RDL::Type::TopType
+      is_top = true
+      tmeth_inter = [trecv]
     else
       raise RuntimeError, "receiver type #{trecv} not supported yet, meth=#{meth}"
     end
@@ -1278,7 +1283,7 @@ RUBY
         trets.concat(trets_tmp)
       end
     }
-    if trets.empty? # no possible matching call
+    if trets.empty? && !is_top # no possible matching call
       msg = <<RUBY
 Method type:
 #{ tmeth_inter.map { |ti| "        " + ti.to_s }.join("\n") }
@@ -1349,6 +1354,9 @@ RUBY
         t = t.type
       end
       case t
+      when RDL::Type::TopType
+        require 'pry'
+        binding.pry
       when RDL::Type::OptionalType
         t = t.type
         if actual == tactuals.size
