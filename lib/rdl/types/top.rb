@@ -15,6 +15,10 @@ module RDL::Type
       super
     end
 
+    def block
+      self
+    end
+
     def to_s
       "%any"
     end
