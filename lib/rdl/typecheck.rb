@@ -1354,9 +1354,6 @@ RUBY
         t = t.type
       end
       case t
-      when RDL::Type::TopType
-        require 'pry'
-        binding.pry
       when RDL::Type::OptionalType
         t = t.type
         if actual == tactuals.size
