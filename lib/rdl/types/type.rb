@@ -101,6 +101,9 @@ module RDL::Type
         raise TypeError, "No type parameters defined for #{left.base.name}" unless formals
         return false unless left.base == right.base
         return variance.zip(left.params, right.params).all? { |v, tl, tr|
+          if [tl, tr].one? { |t| t.is_a?(VarType) }
+            return true
+          end
           case v
           when :+
             leq(tl, tr, inst, ileft)
