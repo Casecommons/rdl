@@ -1533,7 +1533,7 @@ class Diagnostic < Parser::Diagnostic
   end
 
   RDL_MESSAGES = {
-    bad_return_type: "got type `%s' where return type `%s' expected",
+    bad_return_type: "bad return type\ngot type: `%s'\nexpected: `%s'",
     bad_inst_type: "instantiate! called on object of type `%s' where Generic Type was expected",
     inst_not_param: "instantiate! receiver is of class `%s' which is not parameterized",
     inst_num_args: "instantiate! expecting `%s' type parameters, got `%s' parameters",
